@@ -45,7 +45,36 @@ class Home extends React.Component {
   render() {
     if (this.state.isDisplayed){
       
+        return (
+        <div>
+        <form onSubmit={this.changeTemperature}>
+        <div
+          style={{
+            padding: "100px",
+            width: "40%",
+            margin: "0 auto",
+            border: "3px solid black"
+          }}
+        >
+           <h1>House Finder</h1> 
+          <InputLabel id="label">
+            Temperature
+            <br />
+          </InputLabel>
+          <Input placeholder="Input temperature" type="number" onChange={this.changeTemperature}/>
+          <Select labelId="label" id="select" value={this.state.unit} onChange= {this.changeUnit}
+          style={{}}>
+            <MenuItem value="F">Fahrenheit</MenuItem>
+            <MenuItem value="C">Celsius</MenuItem>
+          </Select>
+          <Button onClick={this.changeDisplay}>Submit</Button>
+        </div>
+        
+        
+      </form>
         <DisplayZip></DisplayZip>
+        </div>
+        )
 }
     
     return (
