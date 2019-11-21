@@ -7,15 +7,32 @@ import {
   InputLabel,
   MenuItem
 } from "@material-ui/core";
+import DisplayZip from './DisplayZip'
 
 class Home extends React.Component {
     state = {
-        temperature: 1
+        temperature: 1,
+        unit: "F",
+        isDisplayed: false
 
     }
+    changeUnit= e => {
+      this.setState({
+        unit: e.target.value
+
+
+      })
+      console.log(this.state.unit);
+    }
+    changeDisplay= () => {
+    this.setState({
+      isDisplayed: true
+
+
+    })
+  console.log(this.state.display);}
 
     changeTemperature = e => {
-        console.log(e.target.value);
         this.setState({
             temperature: e.target.value
             
@@ -26,6 +43,11 @@ class Home extends React.Component {
       }
 
   render() {
+    if (this.state.isDisplayed){
+      
+        <DisplayZip></DisplayZip>
+}
+    
     return (
       <form onSubmit={this.changeTemperature}>
         <div
@@ -42,17 +64,18 @@ class Home extends React.Component {
             <br />
           </InputLabel>
           <Input placeholder="Input temperature" type="number" onChange={this.changeTemperature}/>
-          <Select labelId="label" id="select" value="F" 
+          <Select labelId="label" id="select" value={this.state.unit} onChange= {this.changeUnit}
           style={{}}>
             <MenuItem value="F">Fahrenheit</MenuItem>
             <MenuItem value="C">Celsius</MenuItem>
           </Select>
-          <Button onClick={this.changeTemperature}>Submit</Button>
+          <Button onClick={this.changeDisplay}>Submit</Button>
         </div>
+        
         
       </form>
     );
-  }
+        }
 }
 
 export default Home;
